@@ -8,65 +8,68 @@ title: Первый проект на Arduino: делаем хипстерску
 
 
 
-В этом семестре (на память – первый семестр 4-го курса)  нужно было сделать курсовую по схемотехнике. Нашему потоку очень повезло, потому что в этот раз помимо теоретических навыков (будем честны: для меня они закончились бы в лучшем случае знанием разметки шрифта ГОСТа и поиском аналогичных схем в интернете) нам разрешили реализовать свой проект «вживую». 
+В этом семестре (на память – первый семестр 4-го курса)  нужно было сделать курсовую по схемотехнике. Нашему потоку очень повезло, потому что в помимо теоретических навыков (буду честной: для меня они закончились бы в лучшем случае знанием разметки шрифта ГОСТа и поиском аналогичных схем в интернете) нам разрешили реализовать свой проект «вживую». 
 Во славу всем божествам Лавкрафта, я смогла преодолеть этот не совсем легкий период моей жизни и сделать работающую полнофункциональную (!) сигнализацию. В общем, отличный повод создать блог и написать статью о преодоленном пути. :з
-1. С ЧЕГО НАЧАТЬ?
-Если Вы хотите чего-то достичь, нужно составить план. Итак, сигнализация должна детектировать несанкционированное вторжение в охраняемую территорию  и сообщать нам об этом. Для этой нам понадобится:
-1. датчик движения (https://ru.wikipedia.org/wiki/%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA_%D0%B4%D0%B2%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F) 
-2.  датчик открытых дверей (https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D1%80%D0%BA%D0%BE%D0%BD ). 
+
+## 1. С ЧЕГО НАЧАТЬ?
+
+Первым делом надо составить план. Итак, сигнализация должна детектировать несанкционированное вторжение в охраняемую территорию  и сообщать нам об этом. Для этой нам понадобится:
+1. [датчик движения](https://ru.wikipedia.org/wiki/%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA_%D0%B4%D0%B2%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F)
+2. [датчик открытых дверей](https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D1%80%D0%BA%D0%BE%D0%BD)
 Если система зафиксировала объект, она должна оповестить об этом – добавляем 
-3. бипер (https://en.wikipedia.org/wiki/Buzzer) . 
+3. [бипер](https://en.wikipedia.org/wiki/Buzzer) 
 Состояние устройства и его управление будет отображаться на 
-4. LCD-экране. 
-Логика сигнализации реализована с помощью
-5. микроконтроллера.
+4. LCD-экране 
+Логика сигнализации реализуется с помощью
+5. микроконтроллера
+
 Отобразим словесное описание в структурной схеме (рис. 1):
 
 Pис. 1: Структурная схема сигнализации
 
-Со структурной схемой уже не  так страшно нырять в схемотехнические реалии! c:
-По-хорошему следующим этапом должно стать составление функциональной и принципиальной схем,  а потом уже поиск подходящих элементов.  В моем отчете эти пункты идут в обратном направлении: вначале я купила устройства, представленные на отечественном рынке  (кстати, в прямом смысле «рынке»), а после составила схему (так делать не очень хорошо): 
-1.  датчик движения SB412A-01-003
-
-2. герконовый датчик ДМК-П2 (единственный элемент , произведенный в СССР, а не в Китае)
-
-(примерно в таком же состоянии находится и мой)
+По-хорошему следующим этапом должно стать составление функциональной и принципиальной схем,  а потом уже поиск подходящих элементов.  В моем отчете эти пункты идут в обратном направлении: вначале я купила устройства, представленные на отечественном рынке, а после - составила схему (так делать не очень хорошо): 
+1. датчик движения SB412A-01-003
+2. герконовый датчик ДМК-П2 
 3. бипер BMT-1212BX 
-
 4. LCD-экран TFT Touch LCD модуль
+5. микроконтроллер Atmega328 с обвязкой на Arduino UNO R3
++ 10 резистора на 10 КОм (резисторы лишними не бывают). [Подтягивающие резисторы](https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%B4%D1%82%D1%8F%D0%B3%D0%B8%D0%B2%D0%B0%D1%8E%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B7%D0%B8%D1%81%D1%82%D0%BE%D1%80) нужны для устройств с TTL-logic interface.
 
+## 2. ПРИНЦИПИАЛЬНАЯ СХЕМА
 
-5. Гвоздь программы - микроконтроллер Atmega328 с обвязкой на Arduino UNO R3
-
-
-+ 10 резистора на 10 КОм (резисторы лишними не бывают), которые мы будем использовать в качестве подтягивающих резисторов  с устройствами с TTL-logic interface.
- (подробнее здесь: https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%B4%D1%82%D1%8F%D0%B3%D0%B8%D0%B2%D0%B0%D1%8E%D1%89%D0%B8%D0%B9_%D1%80%D0%B5%D0%B7%D0%B8%D1%81%D1%82%D0%BE%D1%80).
-2 ПРИНЦИПИАЛЬНАЯ СХЕМА
-Так, как нам сделать так, чтобы все это дело работало? Можно, например, так (рис. 2): 
+Имея конкретные модели и технические характеристики элементов, можно составить принципиальную схему (рис.2):
 
 Pис. 2: Принципиальная схема сигнализации
+
 Так, для общего развития: соответствие пинам Атмеги к пинам Ардуины пожно посмотреть здесь: http://cdn2.shopium.ua/d/arduino/uploads/ARDUINO_V2.png 
+
 Если Вы не прогуливали схемотехнику, то сможете с легкостью разобраться что к чему (и вознегодовать из-за некорректного оформления).
-Некоторые нюансы схемы:
-1 . Светодиод и бипер  “повешан” на один пин. Потому что… НЕТ СМЫСЛА ИСПОЛЬЗОВАТЬ ДВА ПИНА ИХ И ТАК МАЛО – ВСЕ ЗАНИМАЕТ ЭКРАН. Я серьезно.  Нехватка пинов – это отдельная проблема, которая одного моего одногруппника заставила отказаться от идеи использования экрана вообще. Так что если хотите использовать экран и Ардуину уно в своем проекте – приготовьтесь к жесткой организации своей системы и жестокой экономии пинов.
+
+Рассмотрим схему внимательнее:
+1. Светодиод и бипер  “повешан” на один пин. Потому что… НЕТ СМЫСЛА ИСПОЛЬЗОВАТЬ ДВА ПИНА ИХ И ТАК МАЛО – ВСЕ ЗАНИМАЕТ ЭКРАН. Я серьезно.  Нехватка пинов – это отдельная проблема, которая одного моего одногруппника заставила отказаться от идеи использования экрана вообще. Так что если хотите использовать экран и Ардуину уно в своем проекте – приготовьтесь к жесткой организации своей системы и жестокой экономии пинов.
 Возвращаясь к схеме: почему вместе со светодиодом должен быть резистор, очень хорошо описано здесь: https://electronics.stackexchange.com/questions/32990/do-i-really-need-resistors-when-controlling-leds-with-arduino
 Вкратце - если включить без него, то есть шанс спалить микроконтроллер. 
 2. Конденсатор нужен из-за дебаунсинга (привет, китайская техника! http://ithappens.me/story/13303 ). Это такой эффект, при котором нажатие на клавишу (в моем случает открытие-закрытие геркона) сопровождается маленькими микронажатиями, которые микроконтроллер успешно отработает. Конденсатор «сглаживает» неровности.
 3. В качестве бонуса добавлен разрыв цепи, потому что это просто и быстро, а мне хотелось побыстрее посмотреть, как и что работает.
 Ну от и все! Основная теоретическая часть закончена! Приступаем к сбору схемы.
-3. СБОР СХЕМЫ
 
-Сама интересная часть работы! 
+## 3. СБОР СХЕМЫ
+
+Сама интересная часть.
 Берем беспаечную плату, 
 берем шнур штекер-штекер, 
 подключаем элементы в соответствии со схемой
 …
-Профит :p
-Хотя нет, постойте. Давайте подключим вначале без экранчика, потому что с ним отдельная история (см. далее). Вот что у меня получилось, например:
+Профит
+
+Вот что получается без подключения LCD-экрана:
 
 
-Рис. 3: Cигнализация с двумя датчиками движения, но без экрана (вокруг валяются куски проводов, потому что я купила шнур штекер-гнездо :c )
+Рис. 3: Cигнализация с двумя датчиками движения, но без экрана (вокруг валяются куски проводов, потому что я купила шнур штекер-гнездо)
+
 Можно, например, протестировать такой код:  если датчик движения сработал, то генерируется громкий сигнал, нет – тише.
+
+{% highlight js %}
 void setup()  {
   Serial.begin(9600);
   pinMode(12, OUTPUT);
@@ -76,7 +79,7 @@ void loop()  {
      PIRstate = analogRead(0);
      if(PIRstate > 650){
       Serial.println(PIRstate);
-     analogWrite(12, 40); // Almost any value can be used except 0 and 255
+     analogWrite(12, 40); // 	almost any value can be used except 0 and 255
       delay(1000); // wait for a delayms ms
      }
      else{
@@ -85,11 +88,12 @@ void loop()  {
      }
     delay(1000);
 }
+{% endhighlight %}
 
-4. ИСТОРИЯ С LCD ЭКРАНОМ
-
+## 4. LCD-ЭКРАН
 
 Вот она – заветная цветная отрисовка и тачскрин. Но почему ничего не работает?
+
 А теперь приготовьтесь к самому интересному: c вероятностью в 59 процентов использование моего кода в стиле «скопировать-вставить» НЕ ПОЛУЧИТСЯ.
 Дело в том, что TFT Touch LCD-экран любят производить китайцы, причем производить так, что чипы, от которых зависят библиотеки экрана, РАЗНЫЕ И НЕ СОВПАДАЮТ С ТЕМИ, ЧТО НАПИСАНЫ НА ЭТИКЕТКЕ, И ЧЕРТ ЗНАЕТ, ЧТО ДЕЛАТЬ. Энтузиасты, которые тоже столкнулись с тем, что официальные библиотеки не работают на их китайских покупках, переписывают для своего экран новый вариант библиотек и скидывают его на форум. Так что, если Вы такой же бедный родственник, как и я, купивший дешевый экран (зато цветной и с тачскрином), у вас есть два развития событий:
 1. Переписать самому библиотеку – не очень катит, судя по тому, что Вы читаете мою статью
@@ -97,7 +101,7 @@ void loop()  {
 Мне нечего сказать, господа и дамы. Поучительная история того, что надо делать патчи в своих проектах…
 
 
-5 ПИШЕМ КОД
+## 5. ПИШЕМ КОД
 
 Допустим, предыдущий челлендж Вы успешно прошли и единственное, что стоит между Вами и готовой сигнализацией – ее прошивка (ну и паяние на другую макетную плату, не важно).
 
@@ -109,6 +113,7 @@ void loop()  {
 
 Вот, собственно, и все:
 
+{% highlight js %}
 switch(gFSMState){
     case FSMSTATE_RESET: 
       passed = gCurrentMillis-gTimeoutStart;
@@ -168,8 +173,9 @@ switch(gFSMState){
   
   gCounter++; 
 }
+{% endhighlight %}
 
- А теперь бегом за кодом и паяльником! Мы надежно защищены! ( ͡° ͜ʖ ͡°)
+ А теперь бегом за кодом и паяльником! Мы надежно защищены ( ͡° ͜ʖ ͡°)
 
 
 [Jekyll](http://jekyllrb.com) is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From [the project's readme](https://github.com/mojombo/jekyll/blob/master/README.markdown):
@@ -179,3 +185,167 @@ switch(gFSMState){
 It's an immensely useful tool and one we encourage you to use here with Lanyon.
 
 Find out more by [visiting the project on GitHub](https://github.com/mojombo/jekyll).
+
+
+---
+layout: post
+title: Example content
+---
+
+
+<div class="message">
+  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
+</div>
+
+Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+
+> Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+
+Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+
+## Inline HTML elements
+
+HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+
+- **To bold text**, use `<strong>`.
+- *To italicize text*, use `<em>`.
+- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
+- Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
+- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
+- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
+
+Most of these elements are styled by browsers with few modifications on our part.
+
+## Heading
+
+Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+### Code
+
+Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur ridiculus mus.
+
+{% highlight js %}
+// Example can be run directly in your JavaScript console
+
+// Create a function that takes two arguments and returns the sum of those arguments
+var adder = new Function("a", "b", "return a + b");
+
+// Call the function
+adder(2, 6);
+// > 8
+{% endhighlight %}
+
+Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+
+### Lists
+
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+* Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+* Donec id elit non mi porta gravida at eget metus.
+* Nulla vitae elit libero, a pharetra augue.
+
+Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+
+1. Vestibulum id ligula porta felis euismod semper.
+2. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+3. Maecenas sed diam eget risus varius blandit sit amet non magna.
+
+Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
+
+<dl>
+  <dt>HyperText Markup Language (HTML)</dt>
+  <dd>The language used to describe and define the content of a Web page</dd>
+
+  <dt>Cascading Style Sheets (CSS)</dt>
+  <dd>Used to describe the appearance of Web content</dd>
+
+  <dt>JavaScript (JS)</dt>
+  <dd>The programming language used to build advanced Web sites and applications</dd>
+</dl>
+
+Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
+
+### Tables
+
+Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Upvotes</th>
+      <th>Downvotes</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td>Totals</td>
+      <td>21</td>
+      <td>23</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>Bob</td>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Charlie</td>
+      <td>7</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
+
+-----
+
+Want to see something else added? <a href="https://github.com/poole/poole/issues/new">Open an issue.</a>
+
+
+---
+layout: post
+title: Introducing Lanyon
+---
+
+Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+
+### Built on Poole
+
+Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by [@mdo](https://twitter.com/mdo). Poole, and every theme built on it (like Lanyon here) includes the following:
+
+* Complete Jekyll setup included (layouts, config, [404](/404), [RSS feed](/atom.xml), posts, and [example page](/about))
+* Mobile friendly design and development
+* Easily scalable text and component sizing with `rem` units in the CSS
+* Support for a wide gamut of HTML elements
+* Related posts (time-based, because Jekyll) below each post
+* Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)
+
+### Lanyon features
+
+In addition to the features of Poole, Lanyon adds the following:
+
+* Toggleable sliding sidebar (built with only CSS) via **☰** link in top corner
+* Sidebar includes support for textual modules and a dynamically generated navigation with active link support
+* Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `<body>` classes
+* [Eight optional color schemes](https://github.com/poole/lanyon#themes), available via `<body>` classes
+
+[Head to the readme](https://github.com/poole/lanyon#readme) to learn more.
+
+### Browser support
+
+Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.
+
+### Download
+
+Lanyon is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/lanyon">GitHub repository</a> for downloads, bug reports, and features requests.
+
+Thanks!
