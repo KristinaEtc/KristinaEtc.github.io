@@ -5,10 +5,10 @@ permalink:           pretty
 relative_permalinks: true
 
 # Setup
-title:               Kristina
-tagline:             'Etc'
+title:               Kristina K
+tagline:             'creaturek'
 description:         ''
-url:                 http://lanyon.getpoole.com
+url:                 ''
 baseurl:             'https://kristinaetc.github.io/'
 paginate:            5
 
