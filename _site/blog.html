@@ -1,0 +1,912 @@
+<!--
+#chubby  //  chubbythemes.tumblr.com
+do not claim as your own or remove the theme credit
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+    <title>{title}</title>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="{description}">
+    <meta name="author" content="Chubby Themes">
+    
+    <link rel="shortcut icon" href="{Favicon}" />
+    
+<meta name="image:Background" content="" />
+<meta name="image:Sidebar Background" content="" />
+<meta name="select:BG Repeat" content="repeat" title="Repeat">
+<meta name="select:BG Repeat" content="repeat-x" title="X Repeat">
+<meta name="select:BG Repeat" content="repeat-y" title="Y Repeat">
+<meta name="select:BG Repeat" content="no-repeat" title="No Repeat">
+<meta name="select:BG Attachment" content="fixed" title="Fixed">
+<meta name="select:BG Attachment" content="scroll" title="Scroll">
+<meta name="color:Body Background" content="#FFFFFF"/>
+<meta name="color:Body Text" content="#797979"/>
+<meta name="color:Body Scrollbar" content="#000000"/>
+<meta name="color:Body Links" content="#b6b6b6"/>
+<meta name="color:Body Links Hover" content="#000000"/>
+<meta name="color:Body Borders" content="#edecec"/>
+<meta name="color:Body Accent" content="#797979"/>
+<meta name="color:Tooltip Text" content="#797979"/>
+<meta name="color:Tooltip Border" content="#1a1a1a"/>
+<meta name="color:Tooltip Background" content="#000000"/>
+<meta name="color:Sidebar Borders" content="#797979"/>
+<meta name="color:Sidebar Background" content="#F3F3F3"/>
+<meta name="color:Title Text" content="#797979"/>
+<meta name="color:Description Text" content="#797979"/>
+<meta name="color:Menu Text" content="#797979"/>
+<meta name="color:Post Background" content="#FFFFFF"/>
+<meta name="text:Link 1 title" content="home" />
+<meta name="text:Link 1 URL" content="/" />
+<meta name="text:Link 2 title" content="message" />
+<meta name="text:Link 2 URL" content="/ask" />
+<meta name="text:Link 3 title" content="about" />
+<meta name="text:Link 3 URL" content="/about" />
+<meta name="text:Link 4 title" content="history" />
+<meta name="text:Link 4 URL" content="/archive" />
+<meta name="if:Infinite Scroll" content="0"/>
+<meta name="if:250px Posts" content="0"/>
+<meta name="if:400px Posts" content="0"/>
+<meta name="if:500px Posts" content="1"/>
+<meta name="if:Show Title" content="1"/>
+<meta name="if:Show Description" content="1"/>
+<meta name="if:Show Captions" content="1"/>
+<meta name="if:Show Tags" content="1"/>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<link rel="stylesheet" href="http://static.tumblr.com/9hiqgmd/urWnqfw5e/hint.css">
+
+<script src="http://static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
+<script>
+(function($){
+$(document).ready(function(){
+$("a[title]").style_my_tooltips({
+tip_follows_cursor:true,
+tip_delay_time:80,
+tip_fade_speed:300,
+attribute:"title"
+});
+});
+})(jQuery);
+</script>
+    
+<style type="text/css">
+iframe#tumblr_controls {
+	opacity: .7;
+    bottom: 0% !important;
+    right: 0% !important; 
+    position: fixed !important;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+/* Main Body CSS
+-------------------------------------------------*/
+html { 
+    font-size: 100%; 
+    -webkit-text-size-adjust: 100%; 
+    -ms-text-size-adjust: 100%; 
+}
+
+html, button, input, select, textarea { 
+    font-family: sans-serif; 
+    color: {color:Body Text};
+}
+
+body {
+    font-size: 1em;
+    margin: 0px;
+    padding: 0px;
+    color: {color:Body Text};
+    background-color: {color:Body Background};
+    {block:ifbackgroundimage}
+    background-image: url('{image:Background}'); 
+    background-attachment: {select:BG Attachment};
+    background-repeat: {select:BG Repeat};
+    {/block:ifbackgroundimage}
+}
+    
+a {
+    color: {color:Body Links};
+    text-decoration: none;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+}
+
+a:hover{
+    color: {color:Body Links Hover};
+    text-decoration: none;
+}
+
+pre,code,kbd,samp,tt {
+    font-family: monospace;
+}
+
+b {
+    color: {color:Body Accent};
+    font-family: nimrod;
+}
+    
+::-webkit-scrollbar-thumb:vertical {
+    background: {color:Body Scrollbar};
+    border: 3px solid {color:Body Background};
+}
+::-webkit-scrollbar-thumb:horizontal {
+    background: {color:Body Scrollbar};
+    height: 0;
+}
+::-webkit-scrollbar {
+    background: {color:Body Background} url('{image:Background}'); 
+    height: 0;
+    width: 10px;
+}
+    
+/* Tooltip CSS 
+-------------------------------------------------*/
+#s-m-t-tooltip{
+    max-width: 330px;
+    padding: 4px;
+    margin: 15px 0px 10px 15px;
+    color: {color:Tooltip Text};
+    background-color: {color:Tooltip Background};
+    border: 1px solid {color:Tooltip Border};
+    box-shadow: 0px 0px 25px rgba(0,0,0,0.1);
+    font-size: .7em;
+    text-transform: uppercase;
+    z-index: 9999999;
+}
+    
+/* Container CSS 
+-------------------------------------------------*/
+.main_container{
+    position: relative;
+    {block:if250pxPosts}
+    width: 270px;
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+    width: 420px;
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+    width: 520px;
+    {/block:if500pxPosts}
+    margin: 0 0 0 440px;
+}
+
+/* Sidebar CSS 
+-------------------------------------------------*/
+.sidebar .container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid {color:Sidebar Borders};
+    background-color: {color:Sidebar Background};
+    background-image: url('{image:Sidebar Background}');
+    background-position: center;
+}
+
+.sidebar .content {
+    margin: 30% auto 0 auto;
+    padding: 15px 10px;
+    width: 180px;
+    text-align: center;
+    border: 1px solid {color:Sidebar Borders};
+}
+
+.sidebar .title {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: {color:Title Text};
+}
+
+.sidebar .title::first-letter {
+    border-bottom: 1px solid {color:Title Text};
+}
+
+.sidebar .description {
+    padding: 5px;
+    margin: 0 auto;
+    text-align: justify;
+    font-size: .7em;
+    color: {color:Description Text};
+}
+
+.sidebar .menu {
+    margin: 0 auto;
+}
+
+.sidebar .menu a {
+    display: block;
+    padding: 15px 10px;
+    margin: 5px auto;
+    width: 180px;
+    color: {color:Menu Text};
+    border: 1px solid {color:Sidebar Borders};
+    text-transform: uppercase;
+    text-align: center;
+    font-size: .6em;
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-shadow: 0 -20px 0 transparent;
+}
+
+.sidebar .menu a:hover {
+    color: transparent;
+    text-shadow: 0 0 0 {color:Menu Text};
+    border: 1px solid transparent;
+}
+
+/* Posts CSS
+-------------------------------------------------*/
+.post_container {
+    {block:if250pxPosts}
+    width: 270px;
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+    width: 420px;
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+    width: 520px;
+    {/block:if500pxPosts}
+    margin: 0 auto;}
+
+.entry {
+    {block:if250pxPosts}
+    width: 270px;
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+    width: 420px;
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+    width: 520px;
+    {/block:if500pxPosts}
+    color: {color:Body Text};
+    background: {color:Post Background};
+    border: 1px solid {color:Body Borders};
+    margin: 40px auto;
+    padding: 0;
+    font-size: .8em;
+    overflow: hidden;
+}
+    
+/* Post Elements CSS
+-------------------------------------------------*/
+.entry .entry_content {
+    padding: 10px;
+}
+
+.entry h2 {
+    text-transform: uppercase;
+    font-size: .9em;
+}
+
+.entry h2 a {
+    color: {color:Body Text};
+}
+
+.entry h2 a:hover {
+    color: {color:Body Links};
+}
+
+.entry li {
+    list-style: square;
+}
+
+.entry blockquote {
+    border-left: 1px solid {color:Body Borders};
+    margin: 0px 0px 2px 3px;
+    padding: 0px 0px 0px 5px;
+}
+
+.entry p {
+    padding: 5px 0;
+    margin: 2px 0;
+    word-wrap: break-word;
+}
+
+.entry b {
+    color: {color:Body Accent};
+    font-weight: bold;
+}
+
+.entry .caption img {
+    display: block;
+    {block:if250pxPosts}
+    max-width: 240px;
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+    max-width: 390px;
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+    max-width: 490px;
+    {/block:if500pxPosts}
+    height: auto;
+}
+
+.entry li, .entry blockquote {
+    max-width: 100%;
+}
+
+.entry pre {
+    white-space: pre-wrap;        
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;  
+    white-space: -o-pre-wrap; 
+    word-wrap: break-word; 
+    overflow-x: auto;
+}
+
+.entry .caption {
+    padding: 10px;
+    text-align: justify;
+    border-top: 1px solid {color:Body Borders};
+}
+
+.entry .post_text, .entry .post_link, .entry .post_quote, .entry .post_chat, .entry .post_photo, .entry .post_photoset, .entry .post_video {
+    padding: 10px;
+}
+    
+/* Ask Post CSS
+-------------------------------------------------*/
+.entry .user_icon {
+    position: absolute;
+    margin: 0 0 0 -60px;
+    padding: 10px;
+    width: 30px;
+    border: 1px solid {color:Body Borders};
+}
+
+.entry .user_icon img {
+    display: block;
+}
+
+.entry .user {
+    display: block;
+    font-weight: bold;
+}
+
+.entry .question {
+    margin: 0 0 0 0;
+    padding: 10px 10px 10px 70px;
+    min-height: 52px;
+    border-bottom: 1px solid {color:Body Borders};
+} 
+
+.entry .answer {
+    padding: 10px;
+}
+    
+/* Quote Post CSS
+-------------------------------------------------*/
+.entry .quote {
+    width: 100%; 
+    text-align: center;
+    margin: auto;
+}
+
+.quotetext {
+    font-size: 1.3em;
+} 
+
+.source {
+    text-align: right;
+}
+    
+/* Chat Post CSS
+-------------------------------------------------*/
+.convo {
+    margin-left: 0px;
+}
+
+.line {
+    text-align: left;
+    margin: 3px 0;}
+    
+/* Audio Post CSS
+-------------------------------------------------*/
+.playbox {
+    height: 35px;
+    overflow: hidden; 
+    border-bottom:1px solid {color:Body Borders};
+    z-index: 10000;
+}
+
+.playbutton {
+    overflow: hidden; 
+    position: absolute;
+    margin: 4px;
+    z-index: 100000;
+}
+
+.audioinfo {
+    margin: 0;
+    padding: 10px;
+}
+    
+/* Post Information CSS
+-------------------------------------------------*/
+.entry .info_container {
+    display: block;
+    font-size: 10px;
+    margin: 0;
+    padding: 10px;
+    border-top: 1px solid {color:Body Borders};
+    {block:PermalinkPage}
+    border-bottom: 1px solid {color:Body Borders};
+    {/block:PermalinkPage}
+}
+ 
+.entry .info_content {
+    display: inline-block;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+.entry .info_content .date,
+.entry .info_content .notes,
+.entry .info_content .reblog {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.entry .info_content a {
+    display: inline-block;
+    padding: 0 5px;
+    color: {color:Body Links};
+    text-shadow: 0 -15px 0 transparent;
+}
+
+.entry .info_content a:hover {
+    color: transparent;
+    text-shadow: 0 0 0 {color:Body Links Hover};
+}
+
+.entry .tags {
+    display: inline-block;
+    font-size: 10px;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 0;
+}
+    
+/* Post Notes CSS
+-------------------------------------------------*/
+.sources {
+    filter:alpha(opacity=0);
+    opacity: 0;
+    display: none;
+}
+    
+.postnotes {
+    position: relative;
+    padding: 10px;
+    margin: 0;
+    color: {color:Body Text};
+}
+
+.postnotes a {
+    color: {color:Body Links};
+    font-weight: bold;
+}
+
+.postnotes a:hover {
+    color: {color:Body Text};
+    
+}
+    
+.postnotes ol, .notes, .notes ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.postnotes li, .notes, .notes li {
+    list-style-type: none;
+    padding: 2px;
+    margin: 5px 0;
+}
+
+.postnotes img {
+    display: none;
+}
+
+.avatar_frame {
+    display: none;
+}
+
+/* Navigation CSS
+-------------------------------------------------*/
+.nav_container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 110;
+}
+
+.nav_content {
+    margin: 0 auto;
+    padding: 0;
+    {block:if250pxPosts}
+    width: 270px;
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+    width: 420px;
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+    width: 520px;
+    {/block:if500pxPosts}
+    text-transform: uppercase;
+    text-align: center;
+    font-size: .55em;
+    font-weight: normal;
+}
+   
+.nav_content .current, .nav_content a {
+    display: inline-block;
+    padding: 12px;
+    color: {color:Body Links};
+    text-shadow: 0 -15px 0 transparent;
+}
+
+.nav_content .current:hover, .nav_content a:hover {
+    color: transparent;
+    text-shadow: 0 0 0 {color:Body Links};
+}
+   
+/* Credit CSS
+-------------------------------------------------*/
+.credit {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 18px; 
+    font-family: Helvetica Neue,Arial,Helvetica,FreeSans,sans-serif;
+    text-transform:uppercase;
+}
+ 
+.credit a {
+    color: #000000;
+}
+ 
+.credit a:hover {
+    color: #000000;
+}
+ 
+.hint--left:after {
+    margin-bottom: -8px;
+    font-family: Helvetica Neue,Arial,Helvetica,FreeSans,sans-serif;
+    background: #000000;
+    color: #ffffff;
+}
+ 
+.hint--left:before {
+    border-left-color: transparent;
+}
+   
+.hint:after, [data-hint]:after {
+    content: attr(data-hint);
+    background: #000000;
+    color: #ffffff;
+    padding: 3px 4px;
+    font-size: 8px;
+    line-height: 10px;
+    white-space: nowrap;
+    border: 1px solid #000;
+}
+
+/* Custom CSS
+-------------------------------------------------*/
+{CustomCSS}
+
+</style>
+
+{block:ifInfiniteScroll}
+<!--Infinite Scrolling-->
+<script type="text/javascript" src="http://codysherman.tumblr.com/tools/infinite-scrolling/code"></script>
+<!--Infinite Scrolling-->
+{/block:ifInfiniteScroll}
+
+</head>
+<body>
+       
+<!--Sidebar--> 
+<div class="sidebar">
+    <div class="container">
+        <div class="content">
+            {block:ifShowTitle}
+            <div class="title">{title}</div>
+            {/block:ifShowTitle}
+            {block:ifShowDescription}
+            <div class="description">{description}</div>
+            {/block:ifShowDescription}
+        </div>
+        <div class="menu">
+{block:ifLink1URL}<a href="{text:Link 1 URL}">{text:Link 1 Title}</a>{/block:ifLink1URL}<!--
+-->{block:ifLink2URL}<a href="{text:Link 2 URL}">{text:Link 2 Title}</a>{/block:ifLink2URL}<!--
+-->{block:ifLink3URL}<a href="{text:Link 3 URL}">{text:Link 3 Title}</a>{/block:ifLink3URL}<!--
+-->{block:ifLink4URL}<a href="{text:Link 4 URL}">{text:Link 4 Title}</a>{/block:ifLink4URL}
+        </div>
+    </div>
+</div>
+<!--Sidebar-->
+
+<div class="main_container">
+
+<!--Post Column-->
+<div class="post_container">
+{block:Posts}
+<div class="entry">
+ 
+{block:ContentSource}
+<div class="sources">
+{SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}"width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}{block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo}
+</div>
+{/block:ContentSource}
+    
+{block:Text}
+<div class="post_text">
+    {block:Title}
+    <h2>{Title}</h2>
+    {/block:Title}
+    {Body}
+</div>
+{/block:Text}
+    
+{block:Link}
+<div class="post_link">
+    <h2><a href="{URL}">{Name}</a></h2>
+        {block:Description}
+        {Description}
+        {/block:Description} 
+</div>   
+{/block:Link}
+    
+{block:Answer}
+<div class="post_ask">
+    <div class="question">
+        <div class="user_icon">
+            <img src="{AskerPortraitURL-30}" alt="icon" />
+        </div>
+        <div class="user">{Asker} asked:</div>
+        {Question}</div>
+    <div class="answer">{Answer}</div>
+</div>
+{/block:Answer}
+    
+{block:Quote}
+<div class="post_quote">
+    <div class="quotetext">"{Quote}"</div>
+        {block:Source}<div class="source">{Source}</div>{/block:Source}
+</div>
+{/block:Quote}
+    
+{block:Chat}
+<div class="post_chat">
+    {block:Title}<h2>{Title}</h2>{/block:Title}
+        <div class="text">
+        <div class="convo">
+            {block:Lines}
+                <div class="line">
+                    {block:Label}
+                    <span class="label">{Label}</span>
+                    {/block:Label}
+                    {Line}
+                </div>
+            {/block:Lines}
+        </div>
+        </div>
+</div>
+{/block:Chat}
+    
+{block:Photo}
+<div class="post_photo">
+    {block:IndexPage}
+        <a href="{Permalink}" title="Permalink">
+    {block:if250pxPosts}
+        <img src="{PhotoURL-250}" alt="{PhotoAlt}" width="250px">
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+        <img src="{PhotoURL-400}" alt="{PhotoAlt}" width="400px">
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+        <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="500px">
+    {/block:if500pxPosts}</a>
+    {/block:IndexPage}
+    {block:PermalinkPage}{LinkOpenTag}
+        <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="500px">
+    {LinkCloseTag}{/block:PermalinkPage}
+</div>
+    {block:ifShowCaptions}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:ifShowCaptions}
+    {block:ifnotShowCaptions}
+    {block:PermalinkPage}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:PermalinkPage}
+    {/block:ifnotShowCaptions}
+{/block:Photo}
+    
+{block:Photoset}
+<div class="post_photoset">
+    {block:IndexPage}
+    {block:if250pxPosts}
+        {Photoset-250}
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+        {Photoset-400}
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+        {Photoset-500}
+    {/block:if500pxPosts}
+    {/block:IndexPage}
+    {block:PermalinkPage}
+        {Photoset-500}
+    {/block:PermalinkPage}
+</div>
+    {block:ifShowCaptions}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:ifShowCaptions}
+    {block:ifnotShowCaptions}
+    {block:PermalinkPage}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:PermalinkPage}
+    {/block:ifnotShowCaptions}
+{/block:Photoset}
+    
+{block:Audio} 
+<div class="post_audio">
+    <div class="playbox">
+        <div class="playbutton">
+        {block:AudioPlayer}{AudioPlayerWhite}{/block:AudioPlayer}
+        </div>
+    </div>
+    <div class="audiobox">
+        <div class="audioinfo">
+        {block:Artist}{Artist}{/block:Artist} - 
+        {block:TrackName}{TrackName}{/block:TrackName}
+        </div>
+    </div>
+</div>
+    {block:ifShowCaptions}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:ifShowCaptions}
+    {block:ifnotShowCaptions}
+    {block:PermalinkPage}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:PermalinkPage}
+    {/block:ifnotShowCaptions}
+{/block:Audio} 
+    
+{block:Video}
+<div class="post_video">
+    {block:if250pxPosts}
+        {Video-250}
+    {/block:if250pxPosts}
+    {block:if400pxPosts}
+        {Video-400}
+    {/block:if400pxPosts}
+    {block:if500pxPosts}
+        {Video-500}
+    {/block:if500pxPosts}
+</div>
+    {block:ifShowCaptions}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:ifShowCaptions}
+    {block:ifnotShowCaptions}
+    {block:PermalinkPage}
+        {block:Caption}
+            <div class="caption">
+            {Caption}</div>
+        {/block:Caption}
+    {/block:PermalinkPage}
+    {/block:ifnotShowCaptions}
+{/block:Video}
+
+{block:Date}
+<div class="info_container">
+    <div class="info_content">
+        <div class="date">
+            <a href="{Permalink}" target="_blank">{ShortMonth} {DayOfMonthWithZero}</a>
+        </div>
+    <div class="notes">
+        <a href="{Permalink}"target="_blank">{NoteCount}</a>
+    </div>
+    <div class="reblog">
+        <a href="{ReblogURL}" title="Reblog" target="_blank">🔄</a>
+    </div>
+    {block:PermalinkPage}
+        {block:RebloggedFrom}
+        <a href="{ReblogRootURL}" title="{ReblogRootTitle}" target="_blank">src</a>
+        <a href="{ReblogParentURL}" title="{ReblogParentTitle}" target="_blank">via</a>
+        {/block:RebloggedFrom}
+    {/block:PermalinkPage}
+    {block:ifShowTags}
+        {block:HasTags}
+            <div class="tags">
+            {block:Tags}
+            <a href="{TagURL}" title="{Tag}" target="_blank">#{Tag}</a>
+            {/block:Tags}
+            </div>
+        {/block:HasTags}
+    {/block:ifShowTags}
+    {block:ifnotShowTags}
+    {block:PermalinkPage}
+        {block:HasTags}
+            <div class="tags">
+            {block:Tags}
+            <a href="{TagURL}" title="{Tag}" target="_blank">#{Tag}</a>
+            {/block:Tags}
+            </div>
+        {/block:HasTags}
+    {/block:PermalinkPage}
+    {/block:ifnotShowTags}
+    </div>
+</div>
+{/block:Date}
+    
+{block:PermalinkPage}
+    {block:PostNotes}
+        <div class="postnotes"> 
+        {PostNotes}
+        </div>
+    {/block:PostNotes}
+{/block:PermalinkPage}
+    
+</div>
+{/block:Posts}
+</div>
+<!--Post Column-->
+
+
+<!--Page Navigation-->
+<div class="nav_container">
+    <div class="nav_content">
+        {block:Pagination}
+{block:PreviousPage}<a href="{PreviousPage}">back</a>{/block:PreviousPage}{block:JumpPagination length="5"}{block:CurrentPage}<a href="/" class="current">{PageNumber}</a>{/block:CurrentPage}{block:JumpPage}<a class="jump_page" href="{URL}">{PageNumber}</a>{/block:JumpPage}{/block:JumpPagination}{block:NextPage}<a href="{NextPage}" id="next">next</a>{/block:NextPage}
+        {/block:Pagination}
+    </div>
+</div>
+<!--Page Navigation-->
+
+</div>
+ 
+<!--Credit Link-->
+<div class="credit">
+    <a href="http://chubbygod.tumblr.com/themes" target="_blank" class="hint--left" data-hint="Chubby Themes">♛</a>
+</div>
+<!--Credit Link-->
+
+</body>
+</html>
