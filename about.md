@@ -18,4 +18,4 @@ You can reach me via:
 * [Github](https://github.com/KristinaEtc)
 * [Linkedin](https://www.linkedin.com/in/kristina-kovalevskaya-2181a8111)
 
-Feel free to [email](mailto:isitiriss@gmail.com) me to ask for a job or say hello. 
+Feel free to [email](mailto:isitiriss@gmail.com) me if you’d like to offer me a job or just to say hello.
