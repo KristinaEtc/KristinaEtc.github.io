@@ -8,13 +8,13 @@ title:               Kristina K
 tagline:             'creaturek'
 description:         ''
 url:                 ''
-baseurl:             'https://kristinaetc.github.io/'
+baseurl:             'https://kristinaetc.github.io'
 paginate:            5
 
 # About/contact
 author:
   name:              Kristina Etc
-  url:               https://kristinaetc.github.io/'
+  url:               https://kristinaetc.github.io'
   email:             noemail
 # Custom vars
 version:             1.0.0
