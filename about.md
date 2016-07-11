@@ -1,18 +1,18 @@
 ---
 layout: page
-title: Обо мне
+title: About
 ---
 
 <p class="message">
-Hello. My name is Kristina. I'm interested in Linux system programming and back end development on Golang.
+Hello. My name is Kristina. I'm interested in Linux system programming and back end development on Golang.<br/ >
 
-Living in Minsk, Belarus.
+Living in Minsk, Belarus.<br/ >
 
-Feel free to [email me](mailto:isitiriss@gmail.com) to ask for a job or say hello.
+Feel free to [email](mailto:isitiriss@gmail.com) me to ask for a job or say hello.<br/ >
 </p>
 
 
-I inhabit in this places:
+You can reach me via:
 
 * [Codeeval](https://www.codeeval.com/profile/pachvara)
 * [Github](https://github.com/KristinaEtc)
