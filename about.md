@@ -1,19 +1,23 @@
 ---
 layout: page
-title: Обо мне
+title: About
 ---
 
 <p class="message">
-  Доброго времени суток! Меня зовут Кристина, я живу в Минске, Беларусь. Учусь в БГУИРе на специальности "Вычислительные машины, системы и сети". Интересуюсь системным программированием, на Линукс в частности, люблю вкусно покушать.
+Hello, my name is Kristina.
+
+Living in Minsk, Belarus.
+
+I'm interested in Linux system programming and back end development on Golang.
 </p>
 
 
-Я обитаю здесь:
+You can reach me via:
 
-* [Codeeval](https://www.codeeval.com/profile/pachvara/)
+* [Codeeval](https://www.codeeval.com/profile/pachvara)
 * [Github](https://github.com/KristinaEtc)
 * [Linkedin](https://www.linkedin.com/in/kristina-kovalevskaya-2181a8111)
 
-Оправить приглашение на работу или просто что-нибудь приятное Вы можете [сюда](mailto:isitiriss@gmail.com).
+Feel free to [email](mailto:isitiriss@gmail.com) me to ask for a job or say hello.
 
-(づ｡◕‿‿◕｡)づ 
+⊙﹏⊙ 
