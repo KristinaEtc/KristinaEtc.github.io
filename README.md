@@ -1,4 +1,2 @@
 # KristinaEtc.github.io
-Бложег
-
-<3
+ le Blog
