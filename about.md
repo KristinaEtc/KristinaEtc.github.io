@@ -4,7 +4,7 @@ title: About
 ---
 
 <p class="message">
-Hello. My name is Kristina.
+Hello, my name is Kristina.
 
 Living in Minsk, Belarus.
 
