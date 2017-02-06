@@ -9,13 +9,13 @@ title: Корректное восстановление соединения н
 
 {% highlight golang %}
 
-    var secToRecon = time.Duration(time.Second * 2) //�стартовое время реконнекта
-    var numOfRecon = 0 // �номер реконнекта
+    var secToRecon = time.Duration(time.Second * 2) // стартовое время реконнекта
+    var numOfRecon = 0 //  номер реконнекта
 
     for {
-        ln, err = net.Listen(network, linkD.address) // �пытаемся запустить ожидание сетевого подключения
+        ln, err = net.Listen(network, linkD.address) // пытаемся запустить ожидание сетевого подключения
         if err == nil {
-            // �функция выполнилаcь корректно - можно выйти из цикла и продолжить исполнение кода
+            // функция выполнилаcь корректно - можно выйти из цикла и продолжить исполнение кода
             fmt.Prinln("Listen OK")
             break
         }
@@ -23,14 +23,14 @@ title: Корректное восстановление соединения н
         // функция вернула ошибку! пытаемся переподключиться
         fmt.Prinln("Listen errorr!", err.Error())
         
-        //�создаем тикер (таймер, который сигнализирует не один раз, а каждые secToRecon)
+        // создаем тикер (таймер, который сигнализирует не один раз, а каждые secToRecon)
         ticker := time.NewTicker(secToRecon)
 
         select {
         case _ = <-ticker.C:
             {
                 /* 
-                �время переподключения не меньше установленного лимита - изменяем его:
+                 время переподключения не меньше установленного лимита - изменяем его:
                  увеличиваем задержку экспоненциально + 20-30% от текущего времени переподключения
                 */
                 if secToRecon < backOffLimit {
@@ -39,10 +39,10 @@ title: Корректное восстановление соединения н
                     fmt.Printfd("Random addition=%d", randomAdd/1000000)
                     secToRecon = secToRecon*2 + time.Duration(randomAdd)
                     fmt.Printfd("secToRecon=%d", secToRecon/1000000)
-                    // �увеличиваем количество переподключений
+                    //  увеличиваем количество переподключений
                     numOfRecon++
                 }
-                // �инициализируем тикер с новым значением задержки
+                //  инициализируем тикер с новым значением задержки
                 ticker = time.NewTicker(secToRecon)
                 continue
             }
