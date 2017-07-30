@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Cинхронность отправки и получения данных по небуфферизированным каналам в Go
+title: Cинхронность отправки и получения данных по небуферизированным каналам в Go
 ---
 
-Листала <a href="https://www.amazon.co.uk/d/Books/Go-Action-William-Kennedy/1617291781">книгу</a>, в которой пригляделся пример с небуфферизированными каналами:
+Листала <a href="https://www.amazon.co.uk/d/Books/Go-Action-William-Kennedy/1617291781">книгу</a>, в которой пригляделся пример с небуферизированными каналами:
 
 ![alt text](http://i.imgur.com/SxRhl1C.png)
 ![alt text](http://i.imgur.com/6wIiUoY.png)
