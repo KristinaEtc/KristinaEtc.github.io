@@ -31,7 +31,12 @@ Player Djokovic 5
 
 Ответ гораздо красивее: запись в небуферизированый канал выполняется синхронно с чтением. Даже так: CSP Go работает таким образом, что чтение в канал (но только небуферизированный) выполняется раньше, чем заканчивается запись. Для нас это значит, что в тот момент, когда первая горутина отправила в значение (строка 32), она заблокировалась. Так что  мячик в любом случае принимает вторая горутина (второй игрок) и все работает как и предполагалось.
 
+Отличная иллюстрация поведения канала (а именно, его блокировки до момента чтения) из [3]:
+
+![alt text](https://www.goinggo.net/images/goinggo/Screen+Shot+2014-02-16+at+10.10.54+AM.png)
+
 Подробнее:
 1. Самое простое - внимательно читать книги, а не рывками хватать информацию, в <a href="https://www.amazon.co.uk/d/Books/Go-Action-William-Kennedy/1617291781">Go action</a> это также упомянуто.
 2. <a href="https://golang.org/ref/mem#tmp_7">Официальная документация</a>
-3. <a href="https://groups.google.com/forum/#!topic/golang-nuts/PWt4r9b40bc">Are waiting sends to an unbuffer channel ordered - Google groups</a>
+3. <a href="https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html">The Nature Of Channels In Go</a>
+4. <a href="https://groups.google.com/forum/#!topic/golang-nuts/PWt4r9b40bc">Are waiting sends to an unbuffer channel ordered - Google groups</a>
